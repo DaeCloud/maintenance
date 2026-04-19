@@ -13,9 +13,8 @@ import { Settings, Wrench } from "lucide-react";
 const resolveServiceName = (): string | null => {
   if (typeof window === "undefined") return null;
 
-  const raw = import.meta.env.VITE_SERVICE_NAME_MAP as string | undefined;
-  const fallback =
-    (import.meta.env.VITE_DEFAULT_SERVICE_NAME as string | undefined) ?? null;
+  const raw = (window as any).__APP_CONFIG__?.SERVICE_NAME_MAP;
+  const fallback = (window as any).__APP_CONFIG__?.DEFAULT_SERVICE_NAME ?? null;
 
   console.log(raw);
   console.log(fallback);
